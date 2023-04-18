@@ -13,24 +13,19 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/taikhoan")
+@RequestMapping("/taiKhoan")
 public class TaiKhoanController {
 
     @Autowired
     private TaiKhoanService taiKhoanService;
 
-    @GetMapping("/")
-    public String test(){
-        return "timoday";
+    @PostMapping("/create")
+    public TaiKhoan createTaiKhoan(@RequestBody TaiKhoan taiKhoan){
+        return taiKhoanService.createTaiKhoan(taiKhoan);
     }
 
-    @PostMapping("/add")
-    public TaiKhoan addTaiKhoan(@RequestBody TaiKhoan taiKhoan){
-        return taiKhoanService.addTaiKhoan(taiKhoan);
-    }
-
-    @PutMapping("/update")
-    public TaiKhoan updateTaiKhoan(@RequestParam("id") String id, @RequestBody TaiKhoan taiKhoan){
+    @PutMapping("/update/{id}")
+    public TaiKhoan updateTaiKhoan(@PathVariable("id") String id, @RequestBody TaiKhoan taiKhoan){
         return taiKhoanService.updateTaiKhoan(String.valueOf(id),taiKhoan);
     }
 
@@ -39,9 +34,9 @@ public class TaiKhoanController {
         return taiKhoanService.deleteTaiKhoan(String.valueOf(id));
     }
 
-    @GetMapping("/list")
-    public List<TaiKhoan> getAllTaiKhoan(){
-        return taiKhoanService.getAllTaiKhoan();
+    @GetMapping("/read")
+    public List<TaiKhoan> readAllTaiKhoan(){
+        return taiKhoanService.readAllTaiKhoan();
     }
 
 }

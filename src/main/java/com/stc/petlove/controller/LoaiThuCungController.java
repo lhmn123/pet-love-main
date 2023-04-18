@@ -14,23 +14,18 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/loaithucung")
+@RequestMapping("/loaiThuCung")
 public class LoaiThuCungController {
     @Autowired
     private LoaiThuCungService loaiThuCungService;
 
-    @GetMapping("/")
-    public String test(){
-        return "timoday";
+    @PostMapping("/create")
+    public LoaiThuCung createLoaiThuCung(@RequestBody LoaiThuCung loaiThuCung){
+        return loaiThuCungService.createLoaiThuCung(loaiThuCung);
     }
 
-    @PostMapping("/add")
-    public LoaiThuCung addLoaiThuCung(@RequestBody LoaiThuCung loaiThuCung){
-        return loaiThuCungService.addLoaiThuCung(loaiThuCung);
-    }
-
-    @PutMapping("/update")
-    public LoaiThuCung updaLoaiThuCung(@RequestParam("id") String id, @RequestBody LoaiThuCung loaiThuCung){
+    @PutMapping("/update/{id}")
+    public LoaiThuCung updateLoaiThuCung(@PathVariable("id") String id, @RequestBody LoaiThuCung loaiThuCung){
         return loaiThuCungService.updateLoaiThuCung(String.valueOf(id),loaiThuCung);
     }
 
@@ -39,9 +34,9 @@ public class LoaiThuCungController {
         return loaiThuCungService.deteleLoaiThuCung(String.valueOf(id));
     }
 
-    @GetMapping("/list")
-    public List<LoaiThuCung> getAllLoaiThuCung(){
-        return loaiThuCungService.getAllLoaiThuCung();
+    @GetMapping("/read")
+    public List<LoaiThuCung> readAllLoaiThuCung(){
+        return loaiThuCungService.readAllLoaiThuCung();
     }
 
 }

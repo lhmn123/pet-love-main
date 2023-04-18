@@ -7,14 +7,12 @@ import java.util.List;
 
 public interface DichVuService {
 
-    DichVu addGiaDichVu(String id, GiaDichVu giaDichVu);
-
-    public DichVu addDichVu(DichVu dichVu);
+    public DichVu createDichVu(DichVu dichVu);
 
     public DichVu updateDichVu(String id, DichVu dichVu);
 
     public boolean deleteDichVu(String id);
 
-    public List<DichVu> getAllDichVu();
+    public List<DichVu> readAllDichVu();
 
 }

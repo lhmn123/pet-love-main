@@ -15,43 +15,24 @@ public class DatChoServiceImplement implements DatChoService{
     private DatChoRepository datChoRepository;
 
     @Override
-    public DatCho addThongTinDatCho(String id, ThongTinDatCho thongTinDatCho) {
-        Optional<DatCho> datCho=datChoRepository.findById(id);
-        if(!datCho.isPresent()){
-            throw new NotFoundException(String.format("Id  %s không tồn tại",id));
-        }
-        datCho.get().getThongTinDatChos().add(thongTinDatCho);
-        return datChoRepository.save(datCho.get());
-    }
-
-    @Override
-    public DatCho addDatCho(DatCho datCho) {
-        DatCho datCho1=new DatCho();
+    public DatCho createDatCho(DatCho datCho) {
         if(datCho!=null){
-            datCho1.setEmail(datCho.getEmail());
-            datCho1.setCanDan(datCho.getCanDan());
-            datCho1.setThongTinDatChos(datCho.getThongTinDatChos());
-            datCho1.setThoiGian(datCho.getThoiGian());
-            datCho1.setTrangThaiDatCho(EnumTrangThaiDatCho.DAT_CHO.name());
-            datCho1.setTrangThai(true);
-            return datChoRepository.save(datCho1);
+            return datChoRepository.save(datCho);
         }
         return null;
     }
 
     @Override
     public DatCho updateDatCho(String id, DatCho datCho) {
-        if(datCho!=null){
-            DatCho datCho1=datChoRepository.findById(id).get();
-            if(datCho1!=null){
-                datCho1.setEmail(datCho.getEmail());
-                datCho1.setCanDan(datCho.getCanDan());
-                datCho1.setThongTinDatChos(datCho.getThongTinDatChos());
-                datCho1.setThoiGian(datCho.getThoiGian());
-                datCho1.setTrangThaiDatCho(EnumTrangThaiDatCho.DAT_CHO.name());
-                datCho1.setTrangThai(true);
-                return datChoRepository.save(datCho1);
-            }
+        DatCho dc=datChoRepository.findById(id).get();
+        if(dc!=null){
+            dc.setEmail(datCho.getEmail());
+            dc.setCanDan(datCho.getCanDan());
+            dc.setThongTinDatChos(datCho.getThongTinDatChos());
+            dc.setThoiGian(datCho.getThoiGian());
+            dc.setTrangThaiDatCho(EnumTrangThaiDatCho.DAT_CHO.name());
+            dc.setTrangThai(true);
+            return datChoRepository.save(dc);
         }
         return null;
     }
@@ -67,7 +48,7 @@ public class DatChoServiceImplement implements DatChoService{
     }
 
     @Override
-    public List<DatCho> getAllDatCho() {
+    public List<DatCho> readAllDatCho() {
         return datChoRepository.findAll();
     }
 }

@@ -6,14 +6,12 @@ import java.util.List;
 
 public interface LoaiThuCungService {
 
-    public LoaiThuCung addLoaiThuCung(LoaiThuCung loaiThuCung);
+    public LoaiThuCung createLoaiThuCung(LoaiThuCung loaiThuCung);
 
     public LoaiThuCung updateLoaiThuCung(String id, LoaiThuCung loaiThuCung);
 
     public boolean deteleLoaiThuCung(String id);
 
-    public List<LoaiThuCung> getAllLoaiThuCung();
-
-    public LoaiThuCung getOneLoaiThuCung(String id);
+    public List<LoaiThuCung> readAllLoaiThuCung();
 
 }

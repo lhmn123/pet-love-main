@@ -1,11 +1,11 @@
 # MONGODB (MongoProperties)
 spring:
   application:
-    name: pet-love
+    name: pet-store
   data:
     mongodb:
       uri: mongodb://localhost:27017
-      database: pet-love
+      database: pet-store
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
@@ -13,4 +13,4 @@ spring:
 
 
 server:
-  port: 8090
+  port: 8081

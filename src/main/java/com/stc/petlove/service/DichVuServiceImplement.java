@@ -15,17 +15,7 @@ public class DichVuServiceImplement implements DichVuService{
     private DichVuRepository dichVuRepository;
 
     @Override
-    public DichVu addGiaDichVu(String id, GiaDichVu giaDichVu) {
-        Optional<DichVu> dichVu=dichVuRepository.findById(id);
-        if(dichVu==null){
-            throw new NotFoundException(String.format("Id  %s không tồn tại",id));
-        }
-        dichVu.get().getGiaDichVus().add(giaDichVu);
-        return dichVuRepository.save(dichVu.get());
-    }
-
-    @Override
-    public DichVu addDichVu(DichVu dichVu) {
+    public DichVu createDichVu(DichVu dichVu) {
         return null;
     }
 
@@ -40,7 +30,7 @@ public class DichVuServiceImplement implements DichVuService{
     }
 
     @Override
-    public List<DichVu> getAllDichVu() {
+    public List<DichVu> readAllDichVu() {
         return null;
     }
 }

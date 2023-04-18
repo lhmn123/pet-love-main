@@ -13,7 +13,7 @@ public class TaiKhoanServiceImplement implements TaiKhoanService{
 
 
     @Override
-    public TaiKhoan addTaiKhoan(TaiKhoan taiKhoan) {
+    public TaiKhoan createTaiKhoan(TaiKhoan taiKhoan) {
         if (taiKhoan!=null){
             return taiKhoanRepository.save(taiKhoan);
         }
@@ -22,18 +22,15 @@ public class TaiKhoanServiceImplement implements TaiKhoanService{
 
     @Override
     public TaiKhoan updateTaiKhoan(String id, TaiKhoan taiKhoan) {
-        if(taiKhoan!=null){
-            TaiKhoan taiKhoan1=taiKhoanRepository.findById(id).get();
-            if(taiKhoan1!=null){
-                taiKhoan1.setName(taiKhoan.getName());
-                taiKhoan1.setEmail(taiKhoan.getEmail());
-                taiKhoan1.setPassword(taiKhoan1.getPassword());
-                taiKhoan1.setDienThoai(taiKhoan.getDienThoai());
-                taiKhoan1.setRoles(taiKhoan1.getRoles());
-                taiKhoan1.setTrangThai(taiKhoan1.isTrangThai());
-
-                return taiKhoanRepository.save(taiKhoan1);
-            }
+        TaiKhoan tk=taiKhoanRepository.findById(id).get();
+        if(tk!=null){
+            tk.setName(taiKhoan.getName());
+            tk.setEmail(taiKhoan.getEmail());
+            tk.setPassword(taiKhoan.getPassword());
+            tk.setDienThoai(taiKhoan.getDienThoai());
+            tk.setRoles(taiKhoan.getRoles());
+            tk.setTrangThai(taiKhoan.isTrangThai());
+            return taiKhoanRepository.save(tk);
         }
         return null;
     }
@@ -49,12 +46,8 @@ public class TaiKhoanServiceImplement implements TaiKhoanService{
     }
 
     @Override
-    public List<TaiKhoan> getAllTaiKhoan() {
+    public List<TaiKhoan> readAllTaiKhoan() {
         return taiKhoanRepository.findAll();
     }
 
-    @Override
-    public TaiKhoan getOneTaiKhoan(String id) {
-        return taiKhoanRepository.findById(id).get();
-    }
 }

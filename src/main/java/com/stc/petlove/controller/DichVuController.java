@@ -14,29 +14,19 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/dichvu")
+@RequestMapping("/dichVu")
 
 public class DichVuController {
     @Autowired
     private DichVuService dichVuService;
 
-    @GetMapping("/")
-    public String test(){
-        return "dichvu";
+    @PostMapping("/create")
+    public DichVu createDichVu(@RequestBody DichVu dichVu){
+        return dichVuService.createDichVu(dichVu);
     }
 
-    @PostMapping("/add")
-    public DichVu addDichVu(@RequestBody DichVu dichVu){
-        return dichVuService.addDichVu(dichVu);
-    }
-
-    @PostMapping("/addGiaDichVu/{id}")
-    public DichVu addGiaDichVu(@PathVariable("id") String id, @RequestBody GiaDichVu giaDichVu){
-        return dichVuService.addGiaDichVu(id,giaDichVu);
-    }
-
-    @PutMapping("/update")
-    public DichVu updateDichVu(@RequestParam("id") String id, @RequestBody DichVu dichVu){
+    @PutMapping("/update/{id}")
+    public DichVu updateDichVu(@PathVariable("id") String id, @RequestBody DichVu dichVu){
         return dichVuService.updateDichVu(String.valueOf(id),dichVu);
     }
 
@@ -45,9 +35,9 @@ public class DichVuController {
         return dichVuService.deleteDichVu(String.valueOf(id));
     }
 
-    @GetMapping("/list")
-    public List<DichVu> getAllDichVu(){
-        return dichVuService.getAllDichVu();
+    @GetMapping("/read")
+    public List<DichVu> readAllDichVu(){
+        return dichVuService.readAllDichVu();
     }
 
 }

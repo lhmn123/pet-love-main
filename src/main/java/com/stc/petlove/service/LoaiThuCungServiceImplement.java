@@ -12,7 +12,7 @@ public class LoaiThuCungServiceImplement implements LoaiThuCungService {
     private LoaiThuCungRepository loaiThuCungRepository;
 
     @Override
-    public LoaiThuCung addLoaiThuCung(LoaiThuCung loaiThuCung) {
+    public LoaiThuCung createLoaiThuCung(LoaiThuCung loaiThuCung) {
         if(loaiThuCung!=null){
             return loaiThuCungRepository.save(loaiThuCung);
         }
@@ -21,15 +21,12 @@ public class LoaiThuCungServiceImplement implements LoaiThuCungService {
 
     @Override
     public LoaiThuCung updateLoaiThuCung(String id, LoaiThuCung loaiThuCung) {
-        if(loaiThuCung!=null){
-            LoaiThuCung loaiThuCung1=loaiThuCungRepository.findById(id).get();
-            if(loaiThuCung1!=null){
-                loaiThuCung1.setMaLoaiThuCung(loaiThuCung.getMaLoaiThuCung());
-                loaiThuCung1.setTenLoaiThuCung(loaiThuCung.getTenLoaiThuCung());
-                loaiThuCung1.setTrangThai(loaiThuCung.isTrangThai());
-
-                return loaiThuCungRepository.save(loaiThuCung1);
-            }
+        LoaiThuCung ltc=loaiThuCungRepository.findById(id).get();
+        if(ltc!=null){
+            ltc.setMaLoaiThuCung(loaiThuCung.getMaLoaiThuCung());
+            ltc.setTenLoaiThuCung(loaiThuCung.getTenLoaiThuCung());
+            ltc.setTrangThai(loaiThuCung.isTrangThai());
+            return loaiThuCungRepository.save(ltc);
         }
         return null;
     }
@@ -45,13 +42,8 @@ public class LoaiThuCungServiceImplement implements LoaiThuCungService {
     }
 
     @Override
-    public List<LoaiThuCung> getAllLoaiThuCung() {
+    public List<LoaiThuCung> readAllLoaiThuCung() {
         return loaiThuCungRepository.findAll();
-    }
-
-    @Override
-    public LoaiThuCung getOneLoaiThuCung(String id) {
-        return loaiThuCungRepository.findById(id).get();
     }
 
 }

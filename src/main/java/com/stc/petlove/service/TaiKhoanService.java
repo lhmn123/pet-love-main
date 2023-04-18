@@ -6,14 +6,12 @@ import java.util.List;
 
 public interface TaiKhoanService {
 
-    public TaiKhoan addTaiKhoan (TaiKhoan taiKhoan);
+    public TaiKhoan createTaiKhoan (TaiKhoan taiKhoan);
 
     public TaiKhoan updateTaiKhoan(String id, TaiKhoan taiKhoan);
 
     public boolean deleteTaiKhoan(String id);
 
-    public List<TaiKhoan> getAllTaiKhoan();
-
-    public TaiKhoan getOneTaiKhoan (String id);
+    public List<TaiKhoan> readAllTaiKhoan();
 
 }
